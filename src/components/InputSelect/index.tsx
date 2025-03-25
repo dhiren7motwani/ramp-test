@@ -29,7 +29,7 @@ export function InputSelect<TItem>({
     },
     [consumerOnChange]
   )
-
+  console.log(items);
   return (
     <Downshift<TItem>
       id="RampSelect"

@@ -5,6 +5,7 @@
   "dependencies": {
     "classnames": "^2.3.2",
     "downshift": "^7.0.4",
+    "fs": "^0.0.1-security",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",

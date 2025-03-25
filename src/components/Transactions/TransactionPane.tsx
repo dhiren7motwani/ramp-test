@@ -9,6 +9,21 @@ export const TransactionPane: TransactionPaneComponent = ({
 }) => {
   const [approved, setApproved] = useState(transaction.approved)
 
+  const handleToggle = async () => {
+    const newValue = !approved
+
+    setApproved(newValue) // Optimistic update
+
+    try {
+      await consumerSetTransactionApproval({
+        transactionId: transaction.id,
+        newValue,
+      })
+    } catch (err) {
+      setApproved(approved) // Revert on failure
+    }
+  }
+
   return (
     <div className="RampPane">
       <div className="RampPane--content">
@@ -22,14 +37,7 @@ export const TransactionPane: TransactionPaneComponent = ({
         id={transaction.id}
         checked={approved}
         disabled={loading}
-        onChange={async (newValue) => {
-          await consumerSetTransactionApproval({
-            transactionId: transaction.id,
-            newValue,
-          })
-
-          setApproved(newValue)
-        }}
+        onChange={handleToggle}
       />
     </div>
   )

@@ -14,8 +14,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-    Droid Sans, Helvetica Neue, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -81,6 +80,7 @@ hr.RampBreak--l {
 
 .RampInputSelect--root {
   width: 100%;
+  position: relative;
 }
 
 .RampInputSelect--input {
@@ -88,18 +88,20 @@ hr.RampBreak--l {
   border: 1px solid var(--color-light-shade);
   border-bottom: 1px solid var(--color-text);
   cursor: pointer;
+  background-color: white;
 }
 
 .RampInputSelect--dropdown-container {
   display: none;
-  position: fixed;
+  position: absolute;
   width: 100%;
-  max-width: 700px;
   border: 1px solid var(--color-darker-shade);
-  margin-top: 0.5rem;
+  margin-top: 0.25rem;
   max-height: 16rem;
-  overflow: auto;
-  box-shadow: rgb(0 0 0 / 10%) 0px 0px 1px, rgb(0 0 0 / 13%) 0px 4px 8px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 999;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .RampInputSelect--dropdown-container-opened {
@@ -205,4 +207,37 @@ hr.RampBreak--l {
   display: flex;
   justify-content: flex-end;
   gap: 0.75rem;
+}
+
+.RampInputSelect--dropdown-container {
+  display: none;
+  position: absolute;
+  width: 100%;
+  max-height: 16rem;
+  overflow-y: auto;
+  background-color: var(--color-empty-shade);
+  z-index: 999;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-darker-shade);
+  border-radius: 4px;
+}
+
+.RampInputSelect--dropdown-container-opened {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .RampInputSelect--dropdown-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: auto;
+    margin: 0;
+    width: 100%;
+    max-height: 50vh; /* Use half of viewport */
+    border-radius: 8px 8px 0 0;
+    border-top: 2px solid var(--color-darker-shade);
+    box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.1);
+  }
 }
